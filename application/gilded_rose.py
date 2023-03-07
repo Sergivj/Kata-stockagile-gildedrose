@@ -26,6 +26,9 @@ def check_quality(quality, sulfuras=False):
 class ItemFactory:
     @staticmethod
     def create_item(name: str, sell_in: int, quality: int) -> Item:
+        if "Conjured" in name:
+            check_quality(quality, sulfuras=True) if "Sulfuras" in name else check_quality(quality, sulfuras=False)
+            return Conjured(name, sell_in, quality)
         if name == "Backstage passes to a TAFKAL80ETC concert":
             check_quality(quality, sulfuras=False)
             return BackstagePass(name, sell_in, quality)
@@ -35,9 +38,6 @@ class ItemFactory:
         elif "Sulfuras" in name:
             check_quality(quality, sulfuras=True)
             return Sulfuras(name, sell_in, quality)
-        elif name.startswith("Conjured"):
-            check_quality(quality, sulfuras=False)
-            return Conjured(name, sell_in, quality)
         else:
             check_quality(quality, sulfuras=False)
             return Item(name, sell_in, quality)

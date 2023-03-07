@@ -40,7 +40,11 @@ class ConsoleInventoryRepository:
             return []
 
         for data in Console().get_user_input():
-            name, sell_in, quality = data.split(",")
+            if "Sulfuras" in data:
+                name, description, sell_in, quality = data.split(",")
+                name = name + "," + description
+            else:
+                name, sell_in, quality = data.split(",")
             item = ItemFactory.create_item(name=name, sell_in=int(sell_in), quality=int(quality))
             items.append(item)
         return items

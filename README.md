@@ -26,6 +26,11 @@ _- Dominio: Aquí se encuentra la clase Item, que es la que se encarga de repres
 _- Infraestructura: Aquí se encuentra la clase que se encarga de leer el archivo de texto y de escribir en el archivo de texto, asi como los métodos de salida por pantalla y el archivo de entrada propuesto._
 ## Nuevo requisito: Artículos conjurados (Conjured)
 Para implementar este nuevo requisito, he decidido crear un método estático que se encargue de modificar el item que le pasemos por parámetro. Este método se llama "conjured", y se encarga de modificar el item que le pasemos por parámetro degradando el objeto el doble de rápido en comparación a un item normal.
+
+_[v2.5] Se ha implementado un punto en el que hasta ahora no habíamos contemplado.
+Los artículos conjurados, se degradan (y doy por supuesto que también incrementan) al doble de velocidad que los normales, pero si resulta ser un artículo conjurado y a la vez (por ejemplo) de tipo Backstage o Sulfuras, ¿que pasaría?
+La última implementación realizada permite que un artículo conjurado y que no sea regular se incremente o degrade al doble de velocidad que un artículo que el mismo tipo designado
+Por ejemplo: Si un artículo "Aged Brie" incrementa en 1 su quality cuando aún no se ha vendido, si fuese un artículo "Conjured Aged Brie" incrementaría en 2 su quality mientras no se haya vendido._
 ## Pruebas
 He creado una clase de pruebas para cada uno de los tipos de artículos, y he creado varios métodos de prueba para cada uno de los casos que se especifican en los requerimientos utilizando el lenguaje Given-When-Then.
 

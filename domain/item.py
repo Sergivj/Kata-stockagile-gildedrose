@@ -44,10 +44,28 @@ class Sulfuras(Item):
 
 
 class Conjured(Item):
+    def __init__(self, name, sell_in, quality):
+        super().__init__(name, sell_in, quality)
+        self.multiplier = 2
+
     def calculate_quality(self):
-        if self.sell_in > 0:
-            self.quality = (self.quality - 2) if self.quality > 2 else 0
-            self.sell_in = self.sell_in - 1
+        if "Aged Brie" in self.name:
+            for _ in range(self.multiplier):
+                AgedBrie.calculate_quality(self)
+                self.sell_in += 1
+            self.sell_in -= 1
+        elif "Sulfuras" in self.name:
+            for _ in range(self.multiplier):
+                Sulfuras.calculate_quality(self)
+        elif "Backstage passes to a TAFKAL80ETC concert" in self.name:
+            for _ in range(self.multiplier):
+                BackstagePass.calculate_quality(self)
+                self.sell_in += 1
+            self.sell_in -= 1
         else:
-            self.quality = (self.quality - 4) if self.quality > 4 else 0
-            self.sell_in = self.sell_in - 1
+            if self.sell_in > 0:
+                self.quality = (self.quality - 2) if self.quality > 2 else 0
+                self.sell_in = self.sell_in - 1
+            else:
+                self.quality = (self.quality - 4) if self.quality > 4 else 0
+                self.sell_in = self.sell_in - 1
